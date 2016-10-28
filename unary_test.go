@@ -33,10 +33,10 @@ func TestUnaryDecode(t *testing.T) {
 		input    []byte
 		expected []int
 	}{
-		{[]byte{128}, []int{1}},
+		{[]byte{1}, []int{1}},
 		{[]byte{255}, []int{1, 1, 1, 1, 1, 1, 1, 1}},
-		{[]byte{164}, []int{1, 2, 3}},
-		{[]byte{0,0,0,128}, []int{25}},
+		{[]byte{37}, []int{1, 2, 3}},
+		{[]byte{0,0,0,1}, []int{25}},
 	}
 
 	for _, e := range expecteds {

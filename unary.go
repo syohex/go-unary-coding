@@ -32,7 +32,7 @@ func Decode(bs []byte) []int {
 	zeros := 1
 	for _, b := range bs {
 		n := int(b)
-		mask := 1 << 7
+		mask := 1
 		for i := 0; i < 8; i++ {
 			if (n & mask) == 0 {
 				zeros++
@@ -40,7 +40,7 @@ func Decode(bs []byte) []int {
 				nums = append(nums, zeros)
 				zeros = 1
 			}
-			mask >>= 1
+			mask <<= 1
 		}
 	}
 
