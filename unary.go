@@ -12,6 +12,8 @@ func Encode(nums []int) []byte {
 		if index+zeros >= 8 {
 			bs = append(bs, byte(b))
 			b = 0
+			zeros -= (8 - index)
+			index = 0
 		}
 
 		for ; zeros >= 8; zeros = zeros - 8 {
