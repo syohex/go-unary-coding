@@ -19,7 +19,7 @@ func Encode(nums []int) []byte {
 		}
 
 		index = (index + zeros) % 8
-		b = b | (128 >> index)
+		b = b | (1 << index)
 		index += 1
 	}
 
