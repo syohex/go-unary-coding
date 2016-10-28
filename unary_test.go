@@ -11,6 +11,7 @@ func TestUnaryEecode(t *testing.T) {
 		expected []byte
 	}{
 		{[]int{1}, []byte{1}},
+		{[]int{91}, []byte{0,0,0,0,0,0,0,0,0,0,0,4}},
 		{[]int{1, 2}, []byte{5}},
 		{[]int{1, 2, 3}, []byte{37}},
 		{[]int{1, 2, 3, 4}, []byte{37, 2}},
@@ -44,6 +45,22 @@ func TestUnaryDecode(t *testing.T) {
 		if !reflect.DeepEqual(ns, e.expected) {
 			t.Errorf("unexpected decode: got %v, expected %v",
 				ns, e.expected)
+		}
+	}
+}
+
+func TestUnaryEncodeDecode(t *testing.T) {
+	inputs := [][]int{
+		{1,2,3,4},
+		{91, 93, 23903, 293},
+	}
+
+	for _, i := range inputs {
+		bs := Encode(i)
+		gs := Decode(bs)
+		if !reflect.DeepEqual(gs, i) {
+			t.Errorf("unexpected decode: got %v, expected %v",
+				gs, i)
 		}
 	}
 }
